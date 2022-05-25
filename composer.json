@@ -1,5 +1,5 @@
 {
-  "name": "app-vise/verifai-api",
+  "name": "appvise/verifai-api",
   "description": "Library to access Verifai backend from your server",
   "type": "library",
   "authors": [
