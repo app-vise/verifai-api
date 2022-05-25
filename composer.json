@@ -1,0 +1,35 @@
+{
+  "name": "app-vise/verifai-api",
+  "description": "Library to access Verifai backend from your server",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Daan Geurts-Doorenbos",
+      "email": "daan@app-vise.nl"
+    }
+  ],
+  "require": {
+    "ext-json": "*",
+    "php": ">=7.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Appvise\\Verifai\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Appvise\\Verifai\\Test\\": [
+        "tests/"
+      ]
+    }
+  },
+  "suggest": {
+    "guzzlehttp/guzzle": "^6.3"
+  }
+}
