@@ -35,7 +35,7 @@ class MRZFactory extends AbstractFactory
             self::pluckBoolean('is_line3_length_valid', $data),
             self::pluckBoolean('is_nfc_key_valid', $data),
             self::pluckBoolean('is_optional_data_valid', $data),
-            addslashes(self::pluckString('mrz_string', $data)),
+            self::escape(self::pluckString('mrz_string', $data)),
             self::pluckString('nationality', $data),
             self::pluckString('nationality_parsed', $data),
             self::pluckString('nfc_key', $data),
