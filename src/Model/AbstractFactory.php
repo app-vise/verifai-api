@@ -51,7 +51,7 @@ class AbstractFactory
         return null;
     }
 
-    protected static function escape(?string $string): string
+    protected static function escape(?string $string): ?string
     {
         if ($string !== null && strlen($string) > 0) {
             $string = addslashes($string);
