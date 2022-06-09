@@ -13,7 +13,7 @@ class DataZoneFactory extends AbstractFactory
             self::pluckBoolean('block', $data),
             self::pluckString('side', $data),
             self::pluckFloat('x', $data),
-            self::pluckFloat('x', $data),
+            self::pluckFloat('y', $data),
             self::pluckFloat('height', $data),
             self::pluckFloat('width', $data),
         );
