@@ -24,8 +24,8 @@ final class Barcode
     public function toArray(): array
     {
         $points = [];
-        foreach ($this->polygon as $polygon) {
-            $points .= $polygon->toArray();
+        foreach ($this->polygon as $key => $polygon) {
+            array_push($points, $polygon->toArray());
         }
 
         return [

@@ -10,7 +10,7 @@ final class Rect
     private $top; //	int	Top coordinate of the barcode in the image
     private $width; //	int	Width of the barcode in the image
     private $height; //	int	Height of the barcode in the image
-    //
+
     public function __construct(?int $left, ?int $top, ?int $width, ?int $height)
     {
         $this->left = $left;
@@ -23,7 +23,7 @@ final class Rect
     {
         return [
             'left' => $this->left,
-            'right' => $this->right,
+            'top' => $this->top,
             'width' => $this->width,
             'height' => $this->height,
         ];

@@ -42,8 +42,8 @@ final class IDModel
     public function toArray(): array
     {
         $zones = [];
-        foreach ($this->zones as $zone) {
-            $zones .= $zone->toArray();
+        foreach ($this->zones as $key => $zone) {
+            array_push($zones, $zone->toArray());
         }
         return [
             'country' => $this->country,

@@ -13,7 +13,7 @@ final class VIZ
     private $issuingAuth; //": "Burg. van Stad en Dorp",
     private $placeOfBirth; //": "Specimen",
     private $sex; //": "V/F"
-    //
+
     public function __construct(
         ?string $dateOfBirth,
         ?string $dateOfExpiry,

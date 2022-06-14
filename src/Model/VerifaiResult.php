@@ -104,8 +104,8 @@ class VerifaiResult
     public function toArray(): array
     {
         $barcodes = [];
-        foreach( $this->barcodes as $barcode) {
-            $barcodes .= $barcode->toArray();
+        foreach( $this->barcodes as $key => $barcode) {
+            array_push($barcodes, $barcode->toArray());
         }
         return [
             'faceImage' => $this->faceImage,
