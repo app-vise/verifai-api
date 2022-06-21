@@ -13,7 +13,7 @@ class MRZFactory extends AbstractFactory
             self::pluckString('country_code', $data),
             self::pluckString('country_code_parsed', $data),
             self::pluckString('date_of_birth', $data),
-            self::pluckDate('date_of_birth_parsed', $data, 'Y-m-d'),
+            self::pluckDate('date_of_birth_parsed', $data, '!Y-m-d'),
             self::pluckInteger('date_of_birth_check_digit', $data),
             self::pluckString('date_of_expiry', $data),
             self::pluckDate('date_of_expiry_parsed', $data, 'Y-m-d'),
