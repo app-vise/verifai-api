@@ -6,56 +6,84 @@ namespace Appvise\Verifai\Model;
 
 use DateTime;
 
-class AbstractFactory
+abstract class AbstractFactory
 {
-    protected static function pluckString($needle, $haystack): ?string
+
+    /**
+     * @param string $needle 
+     * @param string[] $haystack 
+     * @return null|string 
+     */
+    protected static function pluckString(string $needle, array $haystack): ?string
     {
         return self::extract($needle, $haystack);
     }
 
-    protected static function pluckFloat($needle, $haystack): ?float
+    /**
+     * @param string $needle 
+     * @param string[] $haystack 
+     * @return null|float 
+     */
+    protected static function pluckFloat(string $needle, array $haystack): ?float
     {
         return (float)self::extract($needle, $haystack);
     }
 
-    protected static function pluckInteger($needle, $haystack): ?int
+    /**
+     * @param string $needle 
+     * @param string[] $haystack 
+     * @return null|int 
+     */
+    protected static function pluckInteger(string $needle, array $haystack): ?int
     {
         return (int)self::extract($needle, $haystack);
     }
 
-    protected static function pluckBoolean($needle, $haystack): ?bool
+    /**
+     * @param string $needle 
+     * @param string[] $haystack 
+     * @return null|bool 
+     */
+    protected static function pluckBoolean(string $needle, array $haystack): ?bool
     {
         return (bool)self::extract($needle, $haystack);
     }
 
-    protected static function pluckArray($needle, $haystack): ?array
+    /**
+     * @param string $needle 
+     * @param string[] $haystack 
+     * @return null|array 
+     */
+    protected static function pluckArray(string $needle, array $haystack): ?array
     {
         return (array)self::extract($needle, $haystack);
     }
 
-    protected static function pluckDate($needle, $haystack, $format = 'Ymd'): ?DateTime
+    /**
+     * @param string $needle 
+     * @param string[] $haystack 
+     * @param null|string $format 
+     * @return null|DateTime 
+     */
+    protected static function pluckDate(string $needle, array $haystack, ?string $format = 'Y-m-d'): ?DateTime
     {
-        $date = (string)self::extract($needle, $haystack);
-        if (!$date) {
+        $dateString = (string)self::extract($needle, $haystack);
+        if (!$dateString) {
             return null;
         }
-        return DateTime::createFromFormat($format, $haystack[$needle]);
+        return DateTime::createFromFormat($format, $dateString);
     }
 
-    private static function extract($needle, $haystack)
+    /**
+     * @param string $needle 
+     * @param string[] $haystack 
+     * @return mixed 
+     */
+    private static function extract(string $needle, array $haystack)
     {
         if (array_key_exists($needle, $haystack)) {
             return $haystack[$needle];
         }
-
         return null;
-    }
-
-    protected static function escape(?string $string): ?string
-    {
-        if ($string !== null && strlen($string) > 0) {
-            $string = addslashes($string);
-        }
-        return $string;
     }
 }

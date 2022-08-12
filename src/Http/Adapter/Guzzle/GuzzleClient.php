@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Appvise\Verifai\Http;
+namespace Appvise\Verifai\Http\Adapter\Guzzle;
 
+use Appvise\Verifai\Http\ClientInterface;
+use Appvise\Verifai\Http\ExceptionHandler;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
@@ -20,22 +22,17 @@ class GuzzleClient implements ClientInterface
         $this->client = $client;
     }
 
-    public function post(string $url, $body): ResponseInterface
+    public function post(string $url, ?array $body = []): ResponseInterface
     {
-        return $this->hit('POST', $url, $body);
+        return $this->hit($url, 'POST', $body);
     }
 
     public function get(string $url): ResponseInterface
     {
-        return $this->hit('GET', $url);
+        return $this->hit($url, 'GET');
     }
 
-    public function delete(string $url): ResponseInterface
-    {
-        return $this->hit('DELETE', $url);
-    }
-
-    private function hit(string $method = 'GET', string $url, ?array $options = [])
+    private function hit(string $url, string $method = 'GET', ?array $options = [])
     {
         try {
             return $this->client->request($method, $url, ['json' => $options]);

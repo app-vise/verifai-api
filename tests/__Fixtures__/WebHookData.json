@@ -1,0 +1,9 @@
+{
+  "event_type": "profile.status",
+  "created": "2022-05-20T13:21:30.247295",
+  "data": {
+    "profile_uuid": "a2d6d353-3c14-40d7-b288-5b4fca9e8f09",
+    "internal_reference": "your reference",
+    "processing_status": "completed"
+  }
+}

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Appvise\Verifai;
 
-use Appvise\Verifai\Http\GuzzleClient;
+use Appvise\Verifai\Http\Adapter\Guzzle\GuzzleClient;
 use GuzzleHttp\Client;
 
 class VerifaiClientFactory
 {
-    public static function make(string $token, $environment = 'production')
+    public static function make(string $token, string $environment = 'production'): VerifaiClientInterface
     {
         switch ($environment) {
             case 'production':

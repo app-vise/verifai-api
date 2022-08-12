@@ -4,121 +4,79 @@ declare(strict_types=1);
 
 namespace Appvise\Verifai\Model;
 
+use DateTime;
+
 class VerifaiResult
 {
-    /** @var string $backImage */
-    private $backImage;
-    /** @var string $frontImage */
-    private $frontImage;
-    /** @var string $frontImageOriginal */
-    private $frontImageOriginal;
-    /** @var string $backImageOriginal */
-    private $backImageOriginal;
-    /** @var string $faceImage */
-    private $faceImage;
-    /** @var IDModel $idModel */
-    private $idModel;
-    /** @var MRZ $mrzData */
-    private $mrzData;
-    /** @var Barcode[] $barcodes */
-    private $barcodes = [];
-    /** @var VIZ $vizData */
-    private $vizData;
-    /** @var FaceMatch $faceMatchData */
-    private $faceMatchData;
+    /** @var ProfileUUID $uuid  */
+    private $uuid;
+    /** @var Report $report  */
+    private $report;
+    /** @var IdentityDocument $identityDocument  */
+    private $identityDocument;
+    /** @var Person $person  */
+    private $person;
+    /** 
+     * Signals whether the review is done and a profile was generated	"awaiting_data", "processing" or "completed"
+     * @var string $processingStatus 
+     **/
+    private $processingStatus;
+    /** @var DateTime $created  */
+    private $created;
+    /** @var string $internalReference  */
+    private $internalReference;
+    /** @var Source $source  */
+    private $source;
 
-    public function __construct(
-        ?string $backImage,
-        ?string $frontImage,
-        ?string $faceImage,
-        ?string $frontImageOriginal,
-        ?string $backImageOriginal,
-        IDModel $idModel,
-        MRZ $mrzData,
-        array $barcodes,
-        VIZ $vizData,
-        FaceMatch $faceMatchData
-    ) {
-        $this->backImage = $backImage;
-        $this->frontImage = $frontImage;
-        $this->frontImageOriginal = $frontImageOriginal;
-        $this->backImageOriginal = $backImageOriginal;
-        $this->faceImage = $faceImage;
-        $this->idModel = $idModel;
-        $this->mrzData = $mrzData;
-        $this->barcodes = $barcodes;
-        $this->vizData = $vizData;
-        $this->faceMatchData = $faceMatchData;
-    }
-
-    public function getBackImage(): ?string
+    public function __construct(ProfileUUID $profileUUID, Report $report, IdentityDocument $identityDocument, Person $person, string $processingStatus, DateTime $created, string $internalReference, Source $source)
     {
-        return $this->backImage;
+        $this->uuid = $profileUUID;
+        $this->report = $report;
+        $this->identityDocument = $identityDocument;
+        $this->person = $person;
+        $this->processingStatus = $processingStatus;
+        $this->created = $created;
+        $this->internalReference = $internalReference;
+        $this->source = $source;
     }
 
-    public function getFrontImage(): ?string
+    public function getUuid(): ProfileUUID
     {
-        return $this->frontImage;
+        return $this->uuid;
     }
 
-    public function getFrontImageOriginal(): ?string
+    public function getReport(): Report
     {
-        return $this->frontImageOriginal;
+        return $this->report;
     }
 
-    public function getBackImageOriginal(): ?string
+    public function getIdentityDocument(): IdentityDocument
     {
-        return $this->backImageOriginal;
+        return $this->identityDocument;
     }
 
-    public function getFaceImage(): ?string
+    public function getPerson(): Person
     {
-        return $this->faceImage;
+        return $this->person;
     }
 
-    public function getIdModel(): ?IDModel
+    public function getProcessingStatus(): string
     {
-        return $this->idModel;
+        return $this->processingStatus;
     }
 
-    public function getMrzData(): ?MRZ
+    public function getCreated(): DateTime
     {
-        return $this->mrzData;
+        return $this->created;
     }
 
-    public function getBarcodes(): array
+    public function getInternalReference(): string
     {
-        return $this->barcodes;
+        return $this->internalReference;
     }
 
-    public function getVizData(): ?VIZ
+    public function getSource(): Source
     {
-        return $this->vizData;
+        return $this->source;
     }
-
-    public function getFaceMatchData(): ?FaceMatch
-    {
-        return $this->faceMatchData;
-    }
-
-    public function toArray(): array
-    {
-        $barcodes = [];
-        foreach( $this->barcodes as $key => $barcode) {
-            array_push($barcodes, $barcode->toArray());
-        }
-        return [
-            'faceImage' => $this->faceImage,
-            'frontImage' => $this->frontImage,
-            'backImage' => $this->backImage,
-            'frontImageOriginal' => $this->frontImageOriginal,
-            'backImageOriginal' => $this->backImageOriginal,
-            'idModel' => $this->idModel->toArray(),
-            'faceMatchData' => $this->faceMatchData->toArray(),
-            'vizData' => $this->vizData->toArray(),
-            'mrzData' => $this->mrzData->toArray(),
-            'barcodes' => $barcodes,
-        ];
-    }
-
 }

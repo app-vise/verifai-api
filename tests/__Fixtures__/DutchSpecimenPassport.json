@@ -1,0 +1,85 @@
+{
+  "created": "2022-04-13T13:38:45.966Z",
+  "identity_document": {
+    "data": {
+      "country": "NLD",
+      "date_of_expiry": "2022-04-13",
+      "date_of_issue": "2022-04-13",
+      "document_number": "SPECI2014",
+      "issuing_authority": "Burg. van Stad en Dorp",
+      "mrz_lines": [
+        "P<NLDDE<BRUIJN<<WILLEKE<LISELOTTE<<<<<<<<<<<",
+        "SPECI20142NLD6503101F2403096999999990<<<<<84"
+      ],
+      "place_of_issue": "Groningen"
+    },
+    "pages": [
+      {
+        "image_cropped": {
+          "height": 0,
+          "mime_type": "jpg",
+          "url": "img-url.com",
+          "width": 0
+        },
+        "image_original": {
+          "height": 0,
+          "mime_type": "jpg",
+          "url": "img-url.com",
+          "width": 0
+        },
+        "roi": {
+          "x1": 1.0,
+          "x2": 1.0,
+          "x3": 1.0,
+          "x4": 1.0,
+          "y1": 1.0,
+          "y2": 1.0,
+          "y3": 1.0,
+          "y4": 1.0
+        },
+        "type": "primary"
+      }
+    ],
+    "report": {
+      "reasons": ["reject_reason_identity_document"],
+      "status": "rejected"
+    }
+  },
+  "person": {
+    "family": {
+      "father_name": "John",
+      "maiden_name": "Mary",
+      "marital_status": "single",
+      "mother_name": "Elizabeth",
+      "spouse_name": "Joe"
+    },
+    "personal": {
+      "date_of_birth": "2022-04-13",
+      "given_names": "Willeke Liselotte",
+      "height": 176,
+      "last_name": "De Bruijn",
+      "nationality": "NLD",
+      "personal_identity_number": "999999990",
+      "place_of_birth": "Groningen",
+      "sex": "female"
+    },
+    "report": {
+      "reasons": ["consider_reason_person"],
+      "status": "consider"
+    },
+    "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+  },
+  "processing_status": "completed",
+  "internal_reference": "your_internal_reference_id",
+  "report": {
+    "reasons": ["reject_reason_identity_document", "consider_reason_person"],
+    "status": "rejected"
+  },
+  "source": {
+    "identifier_uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "input_application": "WEB_SDK",
+    "input_version": "2.8.0",
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+  },
+  "uuid": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}

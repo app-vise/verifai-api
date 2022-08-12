@@ -8,8 +8,31 @@ use Exception;
 
 class Body
 {
+    private const LOCALES = [
+        "en_US",
+        "en_GB",
+        "de_DE",
+        "nl_NL",
+        "pt_PT",
+        "bg_BG",
+        "cs_CZ",
+        "da_DK",
+        "es_ES",
+        "fi_FI",
+        "fr_FR",
+        "el_GR",
+        "hr_HR",
+        "ko_KR",
+        "no_NO",
+        "pl_PL",
+        "ro_RO",
+        "sv_SE",
+        "tr_TR",
+        "ar_SA",
+        "it_IT",
+    ];
     /** @var string[] $document_type_whitelist */
-    private $document_type_whitelist = [];
+    private $document_type_whitelist = ["P", "I", "D", "RP", "R"];
     /** @var string[] $country_choices_whitelist */
     private $country_choices_whitelist = [];
     /** @var string[] $country_choices_blacklist */
@@ -17,7 +40,7 @@ class Body
     /** @var string $handover_base_url */
     private $handover_base_url;
     /** @var bool $allow_edit_privacy_filters */
-    private $allow_edit_privacy_filters;
+    private $allow_edit_privacy_filters = false;
     /** @var string $locale */
     private $locale = 'en_US';
     /** @var string $cors_allowed_origin */
@@ -42,13 +65,6 @@ class Body
         $this->document_type_whitelist = $documentTypes;
     }
 
-    public function addDocument(string $documentType)
-    {
-        if (!in_array($documentType, $this->document_type_whitelist)) {
-            array_push($this->document_type_whitelist, $documentType);
-        }
-    }
-
     public function whitelistCountry(string $country)
     {
         if (!in_array($country, $this->country_choices_whitelist)) {
@@ -65,6 +81,9 @@ class Body
 
     public function setLocale(string $locale)
     {
+        if (!in_array($locale, self::LOCALES)) {
+            throw new Exception("Locale is not supported");
+        }
         $this->locale = $locale;
     }
 
@@ -85,13 +104,16 @@ class Body
 
     public function setCors(string $cors)
     {
+        if (!filter_var($cors, FILTER_VALIDATE_URL)) {
+            throw new Exception('Cors must be a valid URL');
+        }
         $this->cors_allowed_origin = $cors;
     }
 
     public function addValidator($validator)
     {
         if (!in_array($validator, $this->validators)) {
-            array_push($validator, $this->validators);
+            array_push($this->validators, $validator);
         }
     }
 
@@ -105,7 +127,7 @@ class Body
             'locale' => $this->locale,
             'enable_viz' => $this->enable_viz,
             'enable_facematch' => $this->enable_facematch,
-            'allowEditPrivacyFilters' => $this->allow_edit_privacy_filters,
+            'allow_edit_privacy_filters' => $this->allow_edit_privacy_filters,
             'cors_allowed_origin' => $this->cors_allowed_origin,
             'validators' => $this->validators,
         ];

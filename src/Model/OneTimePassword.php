@@ -8,8 +8,11 @@ use DateTime;
 
 final class OneTimePassword
 {
+    /** @var string $token */
     private $token;
+    /** @var DateTime $expire */
     private $expire;
+    /** @var bool $used */
     private $used;
 
     public function __construct(string $token, string $expire, bool $used)
@@ -18,7 +21,7 @@ final class OneTimePassword
         $this->expire = new DateTime($expire);
         $this->used = $used;
     }
-    
+
     public function token(): string
     {
         return $this->token;

@@ -8,7 +8,6 @@ use Psr\Http\Message\ResponseInterface;
 
 interface ClientInterface
 {
-    public function post(string $url, $body): ResponseInterface;
+    public function post(string $url, ?array $body = []): ResponseInterface;
     public function get(string $url): ResponseInterface;
-    public function delete(string $url): ResponseInterface;
 }
